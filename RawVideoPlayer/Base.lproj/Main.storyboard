@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -62,11 +63,18 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Player" id="niE-aQ-xVk">
-                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="iMW-ue-dD0">
-                            <connections>
-                                <action selector="open:" destination="BYZ-38-t0r" id="hyf-0D-CqN"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="organize" id="iMW-ue-dD0">
+                                <connections>
+                                    <action selector="open:" destination="BYZ-38-t0r" id="hyf-0D-CqN"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="URL" id="Pjc-q4-tbP">
+                                <connections>
+                                    <action selector="openURL:" destination="BYZ-38-t0r" id="SOL-8K-8AI"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

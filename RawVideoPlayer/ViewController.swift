@@ -46,6 +46,36 @@ final class ViewController: UIViewController {
         self.present(documentPicker, animated: true, completion: nil)
     }
     
+    @IBAction func openURL(_ sender: AnyObject? = nil) {
+        
+        let alert = UIAlertController(title: "Open URL",
+                                      message: "Type the URL of the video you want to play",
+                                      preferredStyle: .alert)
+        
+        var textField: UITextField!
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Open", style: .default, handler: { [weak self] _ in
+            
+            alert.dismiss(animated: true) { }
+            
+            let text = textField.text ?? ""
+            print("Will play \(text)")
+            guard let url = URL(string: text) else { return }
+            self?.mediaPlayer.media = VLCMedia(url: url)
+            self?.mediaPlayer.play()
+        }))
+        
+        alert.addTextField {
+            textField = $0
+        }
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func play(_ sender: AnyObject? = nil) {
         
         let oldState = mediaPlayer.isPlaying
