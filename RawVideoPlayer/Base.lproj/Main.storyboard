@@ -40,18 +40,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuF-w1-Adp">
-                                <rect key="frame" x="0.0" y="220" width="320" height="128"/>
+                                <rect key="frame" x="0.0" y="194" width="320" height="180"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="cuF-w1-Adp" secondAttribute="height" multiplier="5:2" id="l02-jn-zrc"/>
+                                    <constraint firstAttribute="width" secondItem="cuF-w1-Adp" secondAttribute="height" multiplier="1280:720" id="l02-jn-zrc"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Zj6-ns-JKC">
+                                <rect key="frame" x="0.0" y="348" width="40" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="FBo-1m-HPc"/>
+                                    <constraint firstAttribute="width" secondItem="Zj6-ns-JKC" secondAttribute="height" multiplier="20:13" id="xcd-O9-gv1"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cuF-w1-Adp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="27k-A1-KtE"/>
                             <constraint firstItem="cuF-w1-Adp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="46R-NA-4k6"/>
                             <constraint firstAttribute="trailing" secondItem="cuF-w1-Adp" secondAttribute="trailing" id="VVY-c1-Txv"/>
+                            <constraint firstItem="Zj6-ns-JKC" firstAttribute="bottom" secondItem="cuF-w1-Adp" secondAttribute="bottom" id="Y2o-yw-qta"/>
+                            <constraint firstItem="Zj6-ns-JKC" firstAttribute="leading" secondItem="cuF-w1-Adp" secondAttribute="leading" id="aCe-0a-ltl"/>
                             <constraint firstItem="cuF-w1-Adp" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zOL-nS-rXf"/>
                         </constraints>
                     </view>
@@ -87,4 +96,7 @@
             <point key="canvasLocation" x="33.75" y="34.859154929577464"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="123" height="78"/>
+    </resources>
 </document>
