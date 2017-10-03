@@ -28,7 +28,6 @@
 		6E83DE8B1F58FD9E00F84689 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E83DE8E1F58FD9E00F84689 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E83DE901F58FD9E00F84689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6E83DE9C1F5A773600F84689 /* RawVideoPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RawVideoPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		6E83DEA01F5A809600F84689 /* RawVideoPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RawVideoPlayer.entitlements; sourceTree = "<group>"; };
 		6ED883A21F5A8901001EA550 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		6ED883A41F5A89CF001EA550 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
@@ -93,7 +92,6 @@
 				6E83DE8B1F58FD9E00F84689 /* Assets.xcassets */,
 				6E83DE8D1F58FD9E00F84689 /* LaunchScreen.storyboard */,
 				6E83DE901F58FD9E00F84689 /* Info.plist */,
-				6E83DE9C1F5A773600F84689 /* RawVideoPlayer-Bridging-Header.h */,
 			);
 			path = RawVideoPlayer;
 			sourceTree = "<group>";

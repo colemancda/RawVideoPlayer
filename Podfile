@@ -6,6 +6,6 @@ target 'RawVideoPlayer' do
   use_frameworks!
 
   # Pods for RawVideoPlayer
-  pod 'MobileVLCKit'
+  pod 'VLCKitSwift', :path => '../VLCKitSwift'
   
 end

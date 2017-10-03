@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MobileCoreServices
+import VLCKitSwift
 
 final class ViewController: UIViewController {
     
@@ -20,7 +21,7 @@ final class ViewController: UIViewController {
     
     // MARK: - Properties
     
-    fileprivate lazy var mediaPlayer = VLCMediaPlayer()
+    fileprivate lazy var mediaPlayer: Player = Player()
 
     // MARK: - Loading
     
@@ -29,7 +30,7 @@ final class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // configure media player
-        mediaPlayer.delegate = self
+        //mediaPlayer.delegate = self
         mediaPlayer.drawable = playerView
         
         // show toolbar
@@ -65,7 +66,7 @@ final class ViewController: UIViewController {
             let text = textField.text ?? ""
             print("Will play \(text)")
             guard let url = URL(string: text) else { return }
-            self?.mediaPlayer.media = VLCMedia(url: url)
+            self?.mediaPlayer.media = Media(url: url)
             self?.mediaPlayer.play()
         }))
         
@@ -109,7 +110,7 @@ final class ViewController: UIViewController {
 }
 
 // MARK: - Protocols
-
+/*
 extension ViewController: VLCMediaPlayerDelegate {
     
     @objc
@@ -133,7 +134,7 @@ extension ViewController: VLCMediaPlayerDelegate {
         }
     }
 }
-
+*/
 extension ViewController: UIDocumentPickerDelegate {
     
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
