@@ -16,11 +16,9 @@
 		6ED883A71F5A89DB001EA550 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED883A61F5A89DB001EA550 /* libbz2.tbd */; };
 		6ED883A91F5A89E7001EA550 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED883A81F5A89E7001EA550 /* libiconv.tbd */; };
 		6ED883AB1F5A89F0001EA550 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED883AA1F5A89F0001EA550 /* libz.tbd */; };
-		8DDF96905EE1D57BC19A95D6 /* Pods_RawVideoPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2419472F27F35F0C16344C /* Pods_RawVideoPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4BDC7A1AFE7E79B0FE7F69AD /* Pods-RawVideoPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RawVideoPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RawVideoPlayer/Pods-RawVideoPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		6E83DE811F58FD9E00F84689 /* RawVideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RawVideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E83DE841F58FD9E00F84689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E83DE861F58FD9E00F84689 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,8 +33,6 @@
 		6ED883A81F5A89E7001EA550 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		6ED883AA1F5A89F0001EA550 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		6EF5A1571F5A86E80089761E /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
-		8D2419472F27F35F0C16344C /* Pods_RawVideoPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RawVideoPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B93887D52F4CF332D51D3BDC /* Pods-RawVideoPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RawVideoPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-RawVideoPlayer/Pods-RawVideoPlayer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,28 +44,17 @@
 				6ED883A91F5A89E7001EA550 /* libiconv.tbd in Frameworks */,
 				6ED883A71F5A89DB001EA550 /* libbz2.tbd in Frameworks */,
 				6ED883A51F5A89CF001EA550 /* libstdc++.6.0.9.tbd in Frameworks */,
-				8DDF96905EE1D57BC19A95D6 /* Pods_RawVideoPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		16C892CE026409531B77A6F8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4BDC7A1AFE7E79B0FE7F69AD /* Pods-RawVideoPlayer.debug.xcconfig */,
-				B93887D52F4CF332D51D3BDC /* Pods-RawVideoPlayer.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		6E83DE781F58FD9E00F84689 = {
 			isa = PBXGroup;
 			children = (
 				6E83DE831F58FD9E00F84689 /* RawVideoPlayer */,
 				6E83DE821F58FD9E00F84689 /* Products */,
-				16C892CE026409531B77A6F8 /* Pods */,
 				F414F6663F0D4598C2479B7F /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -105,7 +90,6 @@
 				6ED883A41F5A89CF001EA550 /* libstdc++.6.0.9.tbd */,
 				6ED883A21F5A8901001EA550 /* libc++.tbd */,
 				6EF5A1571F5A86E80089761E /* libstdc++.tbd */,
-				8D2419472F27F35F0C16344C /* Pods_RawVideoPlayer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,12 +101,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6E83DE931F58FD9E00F84689 /* Build configuration list for PBXNativeTarget "RawVideoPlayer" */;
 			buildPhases = (
-				FB3A4F95DBA8ABDD401E12FB /* [CP] Check Pods Manifest.lock */,
 				6E83DE7D1F58FD9E00F84689 /* Sources */,
 				6E83DE7E1F58FD9E00F84689 /* Frameworks */,
 				6E83DE7F1F58FD9E00F84689 /* Resources */,
-				95D7EDDDCF8196C81E91079B /* [CP] Embed Pods Frameworks */,
-				CDB90B0A37FE5DDC4E02BCA7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -186,57 +167,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		95D7EDDDCF8196C81E91079B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RawVideoPlayer/Pods-RawVideoPlayer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CDB90B0A37FE5DDC4E02BCA7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RawVideoPlayer/Pods-RawVideoPlayer-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FB3A4F95DBA8ABDD401E12FB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RawVideoPlayer-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6E83DE7D1F58FD9E00F84689 /* Sources */ = {
@@ -367,7 +297,6 @@
 		};
 		6E83DE941F58FD9E00F84689 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4BDC7A1AFE7E79B0FE7F69AD /* Pods-RawVideoPlayer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -413,7 +342,6 @@
 		};
 		6E83DE951F58FD9E00F84689 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B93887D52F4CF332D51D3BDC /* Pods-RawVideoPlayer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
