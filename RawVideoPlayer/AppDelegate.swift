@@ -7,20 +7,20 @@
 //
 
 import UIKit
-import AVFoundation
+import VLCKitSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var navigationController: UINavigationController {
-        
-        return window?.rootViewController as! UINavigationController
-    }
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        VLCKitSwift.Core.shared.log = {
+            print("VLC:")
+            dump($0)
+        }
         
         return true
     }

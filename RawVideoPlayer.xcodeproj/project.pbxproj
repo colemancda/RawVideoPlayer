@@ -18,58 +18,6 @@
 		6ED883AB1F5A89F0001EA550 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED883AA1F5A89F0001EA550 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		6E9AE78C1F85731A0079984F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E9AE7801F85731A0079984F /* VLCKitSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52D6D97C1BEFF229002C0205;
-			remoteInfo = "VLCKitSwift-iOS";
-		};
-		6E9AE78E1F85731A0079984F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E9AE7801F85731A0079984F /* VLCKitSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52D6DA0F1BF000BD002C0205;
-			remoteInfo = "VLCKitSwift-macOS";
-		};
-		6E9AE7901F85731A0079984F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E9AE7801F85731A0079984F /* VLCKitSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52D6D9E21BEFFF6E002C0205;
-			remoteInfo = "VLCKitSwift-watchOS";
-		};
-		6E9AE7921F85731A0079984F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E9AE7801F85731A0079984F /* VLCKitSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52D6D9F01BEFFFBE002C0205;
-			remoteInfo = "VLCKitSwift-tvOS";
-		};
-		6E9AE7941F85731A0079984F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E9AE7801F85731A0079984F /* VLCKitSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52D6D9861BEFF229002C0205;
-			remoteInfo = "VLCKitSwift-iOS Tests";
-		};
-		6E9AE7961F85731A0079984F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E9AE7801F85731A0079984F /* VLCKitSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DD75027A1C68FCFC006590AF;
-			remoteInfo = "VLCKitSwift-macOS Tests";
-		};
-		6E9AE7981F85731A0079984F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E9AE7801F85731A0079984F /* VLCKitSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DD75028D1C690C7A006590AF;
-			remoteInfo = "VLCKitSwift-tvOS Tests";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		6E83DE811F58FD9E00F84689 /* RawVideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RawVideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E83DE841F58FD9E00F84689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +27,6 @@
 		6E83DE8E1F58FD9E00F84689 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E83DE901F58FD9E00F84689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E83DEA01F5A809600F84689 /* RawVideoPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RawVideoPlayer.entitlements; sourceTree = "<group>"; };
-		6E9AE7801F85731A0079984F /* VLCKitSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VLCKitSwift.xcodeproj; path = Carthage/Checkouts/VLCKitSwift/VLCKitSwift.xcodeproj; sourceTree = "<group>"; };
 		6ED883A21F5A8901001EA550 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		6ED883A41F5A89CF001EA550 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		6ED883A61F5A89DB001EA550 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
@@ -106,7 +53,6 @@
 		6E83DE781F58FD9E00F84689 = {
 			isa = PBXGroup;
 			children = (
-				6E9AE7801F85731A0079984F /* VLCKitSwift.xcodeproj */,
 				6E83DE831F58FD9E00F84689 /* RawVideoPlayer */,
 				6E83DE821F58FD9E00F84689 /* Products */,
 				F414F6663F0D4598C2479B7F /* Frameworks */,
@@ -133,20 +79,6 @@
 				6E83DE901F58FD9E00F84689 /* Info.plist */,
 			);
 			path = RawVideoPlayer;
-			sourceTree = "<group>";
-		};
-		6E9AE7811F85731A0079984F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6E9AE78D1F85731A0079984F /* VLCKitSwift.framework */,
-				6E9AE78F1F85731A0079984F /* VLCKitSwift.framework */,
-				6E9AE7911F85731A0079984F /* VLCKitSwift.framework */,
-				6E9AE7931F85731A0079984F /* VLCKitSwift.framework */,
-				6E9AE7951F85731A0079984F /* VLCKitSwift-iOS Tests.xctest */,
-				6E9AE7971F85731A0079984F /* VLCKitSwift-macOS Tests.xctest */,
-				6E9AE7991F85731A0079984F /* VLCKitSwift-tvOS Tests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		F414F6663F0D4598C2479B7F /* Frameworks */ = {
@@ -217,70 +149,12 @@
 			mainGroup = 6E83DE781F58FD9E00F84689;
 			productRefGroup = 6E83DE821F58FD9E00F84689 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 6E9AE7811F85731A0079984F /* Products */;
-					ProjectRef = 6E9AE7801F85731A0079984F /* VLCKitSwift.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				6E83DE801F58FD9E00F84689 /* RawVideoPlayer */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		6E9AE78D1F85731A0079984F /* VLCKitSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VLCKitSwift.framework;
-			remoteRef = 6E9AE78C1F85731A0079984F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6E9AE78F1F85731A0079984F /* VLCKitSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VLCKitSwift.framework;
-			remoteRef = 6E9AE78E1F85731A0079984F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6E9AE7911F85731A0079984F /* VLCKitSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VLCKitSwift.framework;
-			remoteRef = 6E9AE7901F85731A0079984F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6E9AE7931F85731A0079984F /* VLCKitSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VLCKitSwift.framework;
-			remoteRef = 6E9AE7921F85731A0079984F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6E9AE7951F85731A0079984F /* VLCKitSwift-iOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "VLCKitSwift-iOS Tests.xctest";
-			remoteRef = 6E9AE7941F85731A0079984F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6E9AE7971F85731A0079984F /* VLCKitSwift-macOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "VLCKitSwift-macOS Tests.xctest";
-			remoteRef = 6E9AE7961F85731A0079984F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6E9AE7991F85731A0079984F /* VLCKitSwift-tvOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "VLCKitSwift-tvOS Tests.xctest";
-			remoteRef = 6E9AE7981F85731A0079984F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6E83DE7F1F58FD9E00F84689 /* Resources */ = {
