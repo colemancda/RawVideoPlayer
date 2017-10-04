@@ -31,7 +31,7 @@ final class ViewController: UIViewController {
         
         // configure media player
         //mediaPlayer.delegate = self
-        mediaPlayer.drawable = playerView
+        mediaPlayer.drawable = .view(playerView)
         
         // show toolbar
         self.navigationController?.setToolbarHidden(false, animated: true)
@@ -84,12 +84,12 @@ final class ViewController: UIViewController {
         let shouldPlay = oldState == false
         
         if shouldPlay {
-            
+            /*
             if mediaPlayer.state == .stopped {
                 
                 // reset player
                 mediaPlayer.media = VLCMedia(url: mediaPlayer.media.url)
-            }
+            }*/
             
             mediaPlayer.play()
             
@@ -139,7 +139,7 @@ extension ViewController: UIDocumentPickerDelegate {
     
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         
-        mediaPlayer.media = VLCMedia(url: url)
+        mediaPlayer.media = Media(url: url)
         mediaPlayer.play()
     }
     
