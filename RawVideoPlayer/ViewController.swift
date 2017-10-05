@@ -17,7 +17,10 @@ final class ViewController: UIViewController {
     
     @IBOutlet private(set) weak var playerView: UIView!
     
-    @IBOutlet fileprivate(set) weak var playBarButtonItem: UIBarButtonItem!
+    @IBOutlet fileprivate(set) var playBarButtonItem: UIBarButtonItem! {
+        
+        didSet { toolbarItems = [playBarButtonItem] }
+    }
     
     // MARK: - Properties
     
@@ -35,6 +38,16 @@ final class ViewController: UIViewController {
         
         // show toolbar
         self.navigationController?.setToolbarHidden(false, animated: true)
+        
+        // setup player notifications
+        mediaPlayer.eventManager.register(event: .mediaPlayerMediaChanged, callback: mediaPlayerStateChanged)
+        mediaPlayer.eventManager.register(event: .mediaPlayerPlaying, callback: mediaPlayerStateChanged)
+        mediaPlayer.eventManager.register(event: .mediaPlayerPaused, callback: mediaPlayerStateChanged)
+        mediaPlayer.eventManager.register(event: .mediaPlayerEncounteredError, callback: mediaPlayerStateChanged)
+        mediaPlayer.eventManager.register(event: .mediaPlayerEndReached, callback: mediaPlayerStateChanged)
+        mediaPlayer.eventManager.register(event: .mediaPlayerStopped, callback: mediaPlayerStateChanged)
+        mediaPlayer.eventManager.register(event: .mediaPlayerOpening, callback: mediaPlayerStateChanged)
+        mediaPlayer.eventManager.register(event: .mediaPlayerBuffering, callback: mediaPlayerStateChanged)
     }
     
     // MARK: - Actions
@@ -64,10 +77,12 @@ final class ViewController: UIViewController {
             alert.dismiss(animated: true) { }
             
             let text = textField.text ?? ""
+            
             print("Will play \(text)")
+            
             guard let url = URL(string: text) else { return }
-            self?.mediaPlayer.media = Media(url: url)
-            self?.mediaPlayer.play()
+            
+            self?.playMedia(at: url)
         }))
         
         alert.addTextField {
@@ -84,12 +99,12 @@ final class ViewController: UIViewController {
         let shouldPlay = oldState == false
         
         if shouldPlay {
-            /*
+            
             if mediaPlayer.state == .stopped {
                 
                 // reset player
-                mediaPlayer.media = VLCMedia(url: mediaPlayer.media.url)
-            }*/
+                //mediaPlayer.media = Media(url: mediaPlayer.media.url)
+            }
             
             mediaPlayer.play()
             
@@ -107,40 +122,51 @@ final class ViewController: UIViewController {
         
         playBarButtonItem = UIBarButtonItem(barButtonSystemItem: playItem, target: self, action: #selector(play))
     }
-}
-
-// MARK: - Protocols
-/*
-extension ViewController: VLCMediaPlayerDelegate {
     
-    @objc
-    internal func mediaPlayerStateChanged(_ aNotification: Notification!) {
+    fileprivate func playMedia(at url: URL) {
         
-        switch mediaPlayer.state {
+        // initialize media
+        guard let media = Media(url: url)
+            else { return }
+        
+        // play
+        mediaPlayer.media = media
+        mediaPlayer.play()
+    }
+    
+    private func mediaPlayerStateChanged() {
+        
+        DispatchQueue.main.async { [weak self] in
             
-        case .ended:
+            guard let controller = self else { return }
             
-            playBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(play))
+            let mediaPlayer = controller.mediaPlayer
             
-        case .playing, .opening:
+            assert(Thread.isMainThread, "Should only be called from main thread")
             
-            playBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(play))
+            print("State changed to \(mediaPlayer.state)")
             
-        case .paused:
-            
-            playBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(play))
-            
-        default: break
+            switch mediaPlayer.state {
+                
+            case .ended, .paused:
+                
+                controller.playBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(ViewController.play))
+                
+            case .playing, .opening:
+                
+                controller.playBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(ViewController.play))
+                
+            default: break
+            }
         }
     }
 }
-*/
+
 extension ViewController: UIDocumentPickerDelegate {
     
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         
-        mediaPlayer.media = Media(url: url)
-        mediaPlayer.play()
+        playMedia(at: url)
     }
     
     public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {

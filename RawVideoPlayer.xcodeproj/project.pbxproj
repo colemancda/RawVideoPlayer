@@ -12,10 +12,6 @@
 		6E83DE8A1F58FD9E00F84689 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E83DE881F58FD9E00F84689 /* Main.storyboard */; };
 		6E83DE8C1F58FD9E00F84689 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E83DE8B1F58FD9E00F84689 /* Assets.xcassets */; };
 		6E83DE8F1F58FD9E00F84689 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E83DE8D1F58FD9E00F84689 /* LaunchScreen.storyboard */; };
-		6ED883A51F5A89CF001EA550 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED883A41F5A89CF001EA550 /* libstdc++.6.0.9.tbd */; };
-		6ED883A71F5A89DB001EA550 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED883A61F5A89DB001EA550 /* libbz2.tbd */; };
-		6ED883A91F5A89E7001EA550 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED883A81F5A89E7001EA550 /* libiconv.tbd */; };
-		6ED883AB1F5A89F0001EA550 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED883AA1F5A89F0001EA550 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,12 +23,6 @@
 		6E83DE8E1F58FD9E00F84689 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E83DE901F58FD9E00F84689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E83DEA01F5A809600F84689 /* RawVideoPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RawVideoPlayer.entitlements; sourceTree = "<group>"; };
-		6ED883A21F5A8901001EA550 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		6ED883A41F5A89CF001EA550 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
-		6ED883A61F5A89DB001EA550 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
-		6ED883A81F5A89E7001EA550 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		6ED883AA1F5A89F0001EA550 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		6EF5A1571F5A86E80089761E /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,10 +30,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6ED883AB1F5A89F0001EA550 /* libz.tbd in Frameworks */,
-				6ED883A91F5A89E7001EA550 /* libiconv.tbd in Frameworks */,
-				6ED883A71F5A89DB001EA550 /* libbz2.tbd in Frameworks */,
-				6ED883A51F5A89CF001EA550 /* libstdc++.6.0.9.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,12 +70,6 @@
 		F414F6663F0D4598C2479B7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6ED883AA1F5A89F0001EA550 /* libz.tbd */,
-				6ED883A81F5A89E7001EA550 /* libiconv.tbd */,
-				6ED883A61F5A89DB001EA550 /* libbz2.tbd */,
-				6ED883A41F5A89CF001EA550 /* libstdc++.6.0.9.tbd */,
-				6ED883A21F5A8901001EA550 /* libc++.tbd */,
-				6EF5A1571F5A86E80089761E /* libstdc++.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -177,6 +157,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/VLCKitSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/VLC.framework",
 			);
 			name = "Copy Frameworks";
 			outputPaths = (
