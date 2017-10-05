@@ -15,12 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
-        VLCKitSwift.Core.shared.log = {
-            print("VLC:")
-            dump($0)
-        }
+        VLCKitSwift.Core.shared.log = { if $0.level >= .warning { print("VLC: (\($0.level))", $0.message) } }
         
         return true
     }
