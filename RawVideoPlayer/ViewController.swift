@@ -17,27 +17,49 @@ final class ViewController: UIViewController {
     
     @IBOutlet private(set) weak var playerView: UIView!
     
-    @IBOutlet fileprivate(set) var playBarButtonItem: UIBarButtonItem! {
-        
-        didSet { toolbarItems = [playBarButtonItem] }
-    }
+    @IBOutlet private(set) weak var topControlsView: UIView!
+    
+    @IBOutlet private(set) weak var playPauseButton: UIBarButtonItem!
+    
+    @IBOutlet private(set) weak var previousButton: UIBarButtonItem!
+    
+    @IBOutlet private(set) weak var nextButton: UIBarButtonItem!
+    
+    @IBOutlet private(set) weak var timeSlider: UISlider!
+    
+    @IBOutlet private(set) weak var streamingProgressIndicatorSlider: UISlider!
+    
+    @IBOutlet private(set) weak var loadingViewContainer: UIView!
+    
+    @IBOutlet private(set) weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet private(set) weak var elapsedTimeLabel: UILabel!
+    
+    @IBOutlet private(set) weak var remainingTimeLabel: UILabel!
     
     // MARK: - Properties
     
-    fileprivate lazy var mediaPlayer: Player = Player()
-
+    private lazy var mediaPlayer: Player = Player()
+    
+    private var mediaURL: URL? {
+        
+        didSet { if let url = mediaURL { playMedia(at: url) } }
+    }
+    
+    private lazy var queue: DispatchQueue = DispatchQueue(label: "VLC Media Player Background Queue")
+    
+    //private lazy var core: Core = Core()
+    
     // MARK: - Loading
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // configure media player
-        //mediaPlayer.delegate = self
-        mediaPlayer.drawable = .view(playerView)
+        configureView()
         
-        // show toolbar
-        self.navigationController?.setToolbarHidden(false, animated: true)
+        // configure media player
+        mediaPlayer.drawable = .view(playerView)
         
         // setup player notifications
         mediaPlayer.eventManager.register(event: .mediaPlayerMediaChanged, callback: mediaPlayerStateChanged)
@@ -48,6 +70,12 @@ final class ViewController: UIViewController {
         mediaPlayer.eventManager.register(event: .mediaPlayerStopped, callback: mediaPlayerStateChanged)
         mediaPlayer.eventManager.register(event: .mediaPlayerOpening, callback: mediaPlayerStateChanged)
         mediaPlayer.eventManager.register(event: .mediaPlayerBuffering, callback: mediaPlayerStateChanged)
+        mediaPlayer.eventManager.register(event: .mediaPlayerTimeChanged, callback: {
+            DispatchQueue.main.async { [unowned self] in self.configureViewForTimeChange() }
+        })
+        mediaPlayer.eventManager.register(event: .mediaPlayerPositionChanged, callback: {
+            DispatchQueue.main.async { [unowned self] in self.configureViewForPositionChange() }
+        })
     }
     
     // MARK: - Actions
@@ -82,7 +110,7 @@ final class ViewController: UIViewController {
             
             guard let url = URL(string: text) else { return }
             
-            self?.playMedia(at: url)
+            self?.mediaURL = url
         }))
         
         alert.addTextField {
@@ -92,7 +120,9 @@ final class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func play(_ sender: AnyObject? = nil) {
+    @IBAction func playPause(_ sender: AnyObject? = nil) {
+        
+        let mediaPlayer = self.mediaPlayer
         
         let oldState = mediaPlayer.isPlaying
         
@@ -100,17 +130,39 @@ final class ViewController: UIViewController {
         
         if shouldPlay {
             
-            if mediaPlayer.state == .stopped {
+            if mediaPlayer.state == .ended,
+                let url = self.mediaURL {
+                
+                let media =  Media(url: url)!
                 
                 // reset player
-                //mediaPlayer.media = Media(url: mediaPlayer.media.url)
+                DispatchQueue.main.async { mediaPlayer.media = media }
             }
             
-            mediaPlayer.play()
+            DispatchQueue.main.async { mediaPlayer.play() }
             
         } else {
             
-            mediaPlayer.pause()
+            DispatchQueue.main.async { mediaPlayer.pause() }
+        }
+    }
+    
+    @IBAction func changePosition(_ sender: UISlider) {
+        
+        let newPosition = sender.value
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            guard let controller = self else { return }
+            
+            if controller.mediaPlayer.state == .playing {
+                
+                controller.mediaPlayer.pause()
+            }
+            
+            controller.mediaPlayer.position = newPosition
+            
+            controller.configureViewForTimeChange()
         }
     }
     
@@ -118,20 +170,49 @@ final class ViewController: UIViewController {
     
     private func configureView() {
         
-        let playItem: UIBarButtonSystemItem = mediaPlayer.isPlaying ? .pause : .play
+        let emptyMedia = self.mediaURL == nil
+        let isPlaying = mediaPlayer.state == .playing
+        let isBuffering = mediaPlayer.state == .opening
         
-        playBarButtonItem = UIBarButtonItem(barButtonSystemItem: playItem, target: self, action: #selector(play))
+        // hide or show media player view and controls
+        self.playerView.isHidden = emptyMedia
+        self.topControlsView.isHidden = emptyMedia
+        self.navigationController?.setToolbarHidden(emptyMedia || isBuffering, animated: true)
+        self.loadingViewContainer.isHidden = isBuffering == false
+        self.timeSlider.isHidden = isBuffering
+        self.streamingProgressIndicatorSlider.isHidden = isBuffering
+        
+        // convigure loading view
+        if isBuffering, self.activityIndicator.isAnimating == false {
+            
+            self.activityIndicator.startAnimating()
+            
+        } else {
+            
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.stopAnimating()
+        }
+        
+        // configure play button
+        configurePlayPauseButton()
+        configureViewForPositionChange()
+        configureViewForTimeChange()
     }
     
     fileprivate func playMedia(at url: URL) {
         
         // initialize media
         guard let media = Media(url: url)
-            else { return }
+            else { fatalError("Invalid url: \(url)") }
         
         // play
-        mediaPlayer.media = media
-        mediaPlayer.play()
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.mediaPlayer.media = media
+            self?.mediaPlayer.play()
+        }
+        
+        // callbacks will trigger UI changes
     }
     
     private func mediaPlayerStateChanged() {
@@ -146,19 +227,67 @@ final class ViewController: UIViewController {
             
             print("State changed to \(mediaPlayer.state)")
             
-            switch mediaPlayer.state {
-                
-            case .ended, .paused:
-                
-                controller.playBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(ViewController.play))
-                
-            case .playing, .opening:
-                
-                controller.playBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(ViewController.play))
-                
-            default: break
-            }
+            controller.configureView()
         }
+    }
+    
+    private func configureViewForTimeChange() {
+        
+        let elapsedTimeText: String
+        
+        let remainingTimeText: String
+        
+        if let currentTime = mediaPlayer.time,
+            let duration = mediaPlayer.media?.duration {
+            
+            elapsedTimeText = currentTime.description
+            
+            let remainingTime = currentTime - duration
+            
+            remainingTimeText = remainingTime.description
+            
+        } else {
+            
+            elapsedTimeText = Time?.none.description
+            
+            remainingTimeText = Time?.none.description
+        }
+        
+        self.elapsedTimeLabel.text = elapsedTimeText
+        
+        self.remainingTimeLabel.text = remainingTimeText
+    }
+    
+    private func configureViewForPositionChange() {
+        
+        let position = mediaPlayer.position
+        
+        print("Position changed to \(position)")
+        
+        self.timeSlider.value = position
+    }
+    
+    private func configurePlayPauseButton() {
+        
+        let isPlaying = mediaPlayer.state == .playing
+        
+        let systemItem: UIBarButtonSystemItem = isPlaying ? .pause : .play
+        
+        let label = isPlaying ? "Pause" : "Play"
+        
+        var toolbarItems = self.toolbarItems ?? []
+        
+        guard let index = toolbarItems.index(of: self.playPauseButton) else { return }
+        
+        let newButton = UIBarButtonItem(barButtonSystemItem: systemItem, target: self, action: #selector(playPause))
+        
+        newButton.accessibilityLabel = label
+        
+        self.playPauseButton = newButton
+        
+        toolbarItems[index] = newButton
+        
+        self.toolbarItems = toolbarItems
     }
 }
 
@@ -166,7 +295,7 @@ extension ViewController: UIDocumentPickerDelegate {
     
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         
-        playMedia(at: url)
+        self.mediaURL = url
     }
     
     public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
