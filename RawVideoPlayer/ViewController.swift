@@ -46,10 +46,6 @@ final class ViewController: UIViewController {
         didSet { if let url = mediaURL { playMedia(at: url) } }
     }
     
-    private lazy var queue: DispatchQueue = DispatchQueue(label: "VLC Media Player Background Queue")
-    
-    //private lazy var core: Core = Core()
-    
     // MARK: - Loading
     
     override func viewDidLoad() {
@@ -122,8 +118,6 @@ final class ViewController: UIViewController {
     
     @IBAction func playPause(_ sender: AnyObject? = nil) {
         
-        let mediaPlayer = self.mediaPlayer
-        
         let oldState = mediaPlayer.isPlaying
         
         let shouldPlay = oldState == false
@@ -133,37 +127,28 @@ final class ViewController: UIViewController {
             if mediaPlayer.state == .ended,
                 let url = self.mediaURL {
                 
-                let media =  Media(url: url)!
-                
                 // reset player
-                DispatchQueue.main.async { mediaPlayer.media = media }
+                mediaPlayer.media = Media(url: url)
             }
             
-            DispatchQueue.main.async { mediaPlayer.play() }
+            mediaPlayer.play()
             
         } else {
             
-            DispatchQueue.main.async { mediaPlayer.pause() }
+            mediaPlayer.pause()
         }
     }
     
     @IBAction func changePosition(_ sender: UISlider) {
         
-        let newPosition = sender.value
-        
-        DispatchQueue.main.async { [weak self] in
+        if mediaPlayer.state == .playing {
             
-            guard let controller = self else { return }
-            
-            if controller.mediaPlayer.state == .playing {
-                
-                controller.mediaPlayer.pause()
-            }
-            
-            controller.mediaPlayer.position = newPosition
-            
-            controller.configureViewForTimeChange()
+            mediaPlayer.pause()
         }
+        
+        mediaPlayer.position = sender.value
+        
+        configureViewForTimeChange()
     }
     
     // MARK: - Private Methods
@@ -206,11 +191,8 @@ final class ViewController: UIViewController {
             else { fatalError("Invalid url: \(url)") }
         
         // play
-        DispatchQueue.main.async { [weak self] in
-            
-            self?.mediaPlayer.media = media
-            self?.mediaPlayer.play()
-        }
+        mediaPlayer.media = media
+        mediaPlayer.play()
         
         // callbacks will trigger UI changes
     }
